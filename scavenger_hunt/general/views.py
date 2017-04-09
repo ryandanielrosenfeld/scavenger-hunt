@@ -14,12 +14,16 @@ def register(request):
             user.first_name = request.POST['first_name']
             user.last_name = request.POST['last_name']
             user.save()
+            user = authenticate(username=request.POST['email'], password=request.POST['password'])
             login(request, user)
-            return render(request, 'questions/index.html')
+            return HttpResponseRedirect('/')
         elif login_form.is_valid():
-            user = authenticate(username=request.POST['username'], password=request.POST['password'])
+            u = request.POST['email']
+            p = request.POST['password']
+            user = authenticate(username=u, password=p)
+            print(user)
             if user is not None:
-                login(user)
+                login(request, user)
                 return HttpResponseRedirect('/')
     reg_form = RegisterForm()
     login_form = LoginForm()

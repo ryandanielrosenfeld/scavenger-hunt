@@ -2,7 +2,12 @@
 
 {% block content %}
 <div class="container text-center">
-    <h1>To start your adventure, go to the steps of Thornton Hall</h1>
-    <button class="btn btn-success"><a href="/task1/">Proceed</a></button>
+    <h1>Welcome to the UVA Scavenger Hunt!</h1>
+    {% if request.user.task_num == 0 %}
+        <h3>To start your adventure, go to the steps of Thornton Hall</h3>
+        <button class="btn btn-success"><a href="/task1/">Proceed</a></button>
+    {% else %}
+        <h3><a href="/task{{ request.user.task_num }}/">Current task number: {{ request.user.task_num }}</h3>
+        <h3>Unlocked stations:</h3>
 </div>
 {% endblock %}

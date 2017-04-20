@@ -2,7 +2,13 @@
 
 {% block task_num %}TASK 1{% endblock %}
 
-{% block progress %}10{% endblock %}
+{% block progress_bar %}
+    <div class="progress">
+        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60"
+             aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+        </div>
+    </div>
+{% endblock %}
 
 {% block content %}
     {% if correct %}
@@ -32,15 +38,25 @@
             </div>
         </div>
     {% endif %}
-    <h2>What year was Trigon was founded?</h2>
-    <form action="/task1/" method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-            {{ form.answer }}
-        </div>
-        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Submit</button>
-    </form>
-    <button id="proceed-btn" class="btn btn-info pull-right btn-lg" {% if not correct %}disabled{% endif %}>
-        <a href="/task2/">Proceed</a>
-    </button>
+    {% if not activated %}
+        <h2>What year was Trigon was founded?</h2>
+        <form action="/task1/" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.answer }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Submit</button>
+        </form>
+    {% else %}
+        {% if not correct %}<h3><i>You correctly answered that Trigon was founded in 1924</i></h3>{% endif %}
+        <hr>
+        <h3>Station Unlocked!</h3>
+        <a href="/task1/activate/" class="btn btn-success btn-lg" style="width: 100%">Make TJ Talk</a>
+    {% endif %}
+    <div class="row">
+        <a class="btn btn-info pull-left" href="/" style="margin-left: 10px;">Return to home</a>
+        {% if activated %}
+            <a id="proceed-btn" class="btn btn-primary pull-right" href="/task2/" style="margin-right: 10px;">Next task</a>
+        {% endif %}
+    </div>
 {% endblock %}

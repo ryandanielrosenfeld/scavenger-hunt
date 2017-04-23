@@ -8,8 +8,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^register/', general_views.register),
     url(r'^$', general_views.index),
-    url(r'^task1/', question_views.task1),
     url(r'^task1/activate/', question_views.task1_activate),
+    url(r'^task1/', question_views.task1),
     url(r'^task2/', question_views.task2),
-    url(r'^api/', api_views.api_call)
+    url(r'^task3/activate/', question_views.task3_activate),
+    url(r'^task3/', question_views.task3),
+    url(r'^api/', api_views.api_call),
 ]

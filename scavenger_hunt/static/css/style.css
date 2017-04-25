@@ -6,3 +6,26 @@
     color: inherit;
     text-decoration: none;
 }
+
+.btn-link a{
+    color: white;
+    outline: none;
+    background: none;
+    color-interpolation: white;
+}
+
+ul.nav li a, ul.nav li a:visited {
+    color: white !important;
+}
+
+ul.nav li a:hover, ul.nav li a:active {
+    color: white !important;
+}
+
+ul.nav li.active a {
+    color: white !important;
+}
+
+#logout_button {
+    color: white;
+}

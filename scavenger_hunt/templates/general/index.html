@@ -3,6 +3,10 @@
 {% block content %}
 <div class="container text-center">
     <h1>Welcome to the UVA Scavenger Hunt!</h1>
+    {% if request.user.is_authenticated %}
+        <h2>Signed in as {{ request.user.first_name }} {{ request.user.last_name }}</h2>
+        <button class="btn btn-success"><a href="{% url 'logout' %}">Sign Out</a></button>
+    {% endif %}
     {% if request.user.task_num == 0 %}
         <h3>To start your adventure, go to the steps of Thornton Hall</h3>
         <button class="btn btn-success"><a href="/task1/">Proceed</a></button>
@@ -28,6 +32,14 @@
                         <td>Make TJ talk</td>
                         <td>Steps of Thornton Hall</td>
                         <td><a class="btn btn-primary" href="/task1/"><i class="material-icons">launch</i></a></td>
+                    </a></tr>
+                {% endif %}
+                {% if request.user.task_num > 2 %}
+                    <tr><a href="/task2/">
+                        <td>2</td>
+                        <td>Activate the whiteboard</td>
+                        <td>Professor Bailey's Office Window</td>
+                        <td><a class="btn btn-primary" href="/task2/"><i class="material-icons">launch</i></a></td>
                     </a></tr>
                 {% endif %}
                 {% if request.user.task_num > 3 %}

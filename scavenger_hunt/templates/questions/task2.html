@@ -21,7 +21,7 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
               </button>
-                <b>CORRECT</b>, Professor Bailey has a flag hanging in his window! Click proceeed to move on to the next task.
+                <b>CORRECT</b>, Professor Bailey uses an Apple computer.
             </div>
         </div>
     {% elif incorrect %}
@@ -39,7 +39,7 @@
         </div>
     {% endif %}
     {% if not activated %}
-        <h2>What does Professor Bailey have hanging in his window?</h2>
+        <h2>What type of computer does Professor Bailey have in his office?</h2>
         <form action="/task2/" method="POST">
             {% csrf_token %}
             <div class="form-group">

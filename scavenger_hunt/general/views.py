@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm, LoginForm
 from .models import SiteUser
 
@@ -9,6 +9,7 @@ def register(request):
     if request.method == 'POST':
         reg_form = RegisterForm(request.POST)
         login_form = LoginForm(request.POST)
+        #logging_in = True
         if reg_form.is_valid():
             user = SiteUser.objects.create_user(request.POST['email'], request.POST['email'], request.POST['password'])
             user.first_name = request.POST['first_name']
@@ -34,3 +35,7 @@ def index(request):
     if request.user.is_authenticated():
         return render(request, 'index.html')
     return HttpResponseRedirect('/register/')
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')

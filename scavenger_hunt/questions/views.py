@@ -54,7 +54,7 @@ def task2(request):
     if request.method == 'POST':
         form = Task2Form(request.POST)
         if form.is_valid():
-            if request.POST['answer'] == 'flag':
+            if request.POST['answer'].lower() == 'apple':
                 correct = True
                 activated = True
                 request.user.task_num = 3

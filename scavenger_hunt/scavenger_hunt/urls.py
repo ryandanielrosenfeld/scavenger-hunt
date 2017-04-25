@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^task3/activate/', question_views.task3_activate),
     url(r'^task3/', question_views.task3),
     url(r'^api/', api_views.api_call),
+	url(r'^logout/', general_views.logout_view, name='logout'),
 ]

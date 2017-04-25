@@ -3,9 +3,11 @@ from .forms import *
 from django.http import HttpResponseRedirect
 from .models import Task
 from .services import activate_song
+from .selenium_board_control import activate_board
 
 
 def task1(request):
+    print("task 1")
     form = Task1Form()
     incorrect = False
     correct = False
@@ -31,6 +33,7 @@ def task1(request):
 
 
 def task1_activate(request):
+    print("task 1 activate")
     t = Task.objects.get(number=1)
     t.activate = True
     t.save()
@@ -38,6 +41,7 @@ def task1_activate(request):
 
 
 def task2(request):
+    print("task 2")
     form = Task2Form()
     incorrect = False
     correct = False
@@ -50,7 +54,7 @@ def task2(request):
     if request.method == 'POST':
         form = Task2Form(request.POST)
         if form.is_valid():
-            if request.POST['answer'] == '1924':
+            if request.POST['answer'] == 'flag':
                 correct = True
                 activated = True
                 request.user.task_num = 3
@@ -60,6 +64,16 @@ def task2(request):
             return render(request, 'task2.html', {'form': form, 'correct': correct, 'incorrect': incorrect,
                                                   'activated': activated})
     return render(request, 'task2.html', {'form': form, 'activated': activated})
+
+def task2_activate(request):
+    print("task 2 activate")
+    t = Task.objects.get(number=2)
+    t.activate = True
+    t.save()
+    user = request.user
+    name = user.first_name
+    activate_board(name)
+    return HttpResponseRedirect('/task2/')
 
 
 def task3(request):

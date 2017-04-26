@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block task_num %}TASK 1{% endblock %}
+{% block task_num %}TASK 9{% endblock %}
 
 {% block progress_bar %}
     <div class="progress">
         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60"
-             aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+             aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
         </div>
     </div>
 {% endblock %}
@@ -21,7 +21,8 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
               </button>
-                <b>CORRECT</b>, the answer was "Lewin"! Professor Gregory Lewin is an "esteemed" Professor at UVA. Click Proceed to move on to the next task.
+                <h4><strong>CORRECT</strong>, you answered Concrete Lightning!<br>
+                    Click Proceed to move on to the next task.</h4>
             </div>
         </div>
     {% elif incorrect %}
@@ -34,14 +35,14 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
               </button>
-              Sorry, try again. Make sure you're in the courtyard between Olsson Hall and Rice Hall!
+                Sorry, try again. Make sure you're looking at an orange and blue boat!
             </div>
         </div>
     {% endif %}
     {% if not activated %}
-        <h2>Who is referred to as the Engineering Super Genius? Look for the orange sticky note in the first floor
-            Rice windows (you should be able to see it from the courtyard)</h2>
-        <form action="/task1/" method="POST">
+        <h3><i>Walk down Engineer's Way towards Scott Stadium.</i></h3>
+        <h2>What is the name of the concrete boat on your left?</h2>
+        <form action="/task9/" method="POST">
             {% csrf_token %}
             <div class="form-group">
                 {{ form.answer }}
@@ -49,16 +50,12 @@
             <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Submit</button>
         </form>
     {% else %}
-        {% if not correct %}<h3><i>You correctly answered "Lewin"!</i></h3>{% endif %}
-        <hr>
-        <h3>Station Unlocked!</h3>
-        <p>(Directions)</p>
-        <a href="/task1/activate/" class="btn btn-success btn-lg" style="width: 100%">Make TJ Come To Life!</a>
+        {% if not correct %}<h3><i>You correctly answered Concrete Lightning!</i></h3>{% endif %}
     {% endif %}
     <div class="row">
         <a class="btn btn-info pull-left" href="/" style="margin-left: 10px;">Return to home</a>
         {% if activated %}
-            <a id="proceed-btn" class="btn btn-primary pull-right" href="/task2/" style="margin-right: 10px;">Next task</a>
+            <a id="proceed-btn" class="btn btn-primary pull-right" href="/task10/" style="margin-right: 10px;">Proceed</a>
         {% endif %}
     </div>
 {% endblock %}

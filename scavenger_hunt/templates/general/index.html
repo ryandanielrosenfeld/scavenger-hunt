@@ -8,7 +8,7 @@
         <button class="btn btn-success"><a href="{% url 'logout' %}">Sign Out</a></button>
     {% endif %}
     {% if request.user.task_num == 0 %}
-        <h3>To start your adventure, go to the steps of Thornton Hall</h3>
+        <h3>To start your adventure, go to the Rice courtyard (between Olsson Hall and Rice Hall)</h3>
         <button class="btn btn-success"><a href="/task1/">Proceed</a></button>
     {% else %}
         <h3>Current task number: {{ request.user.task_num }}</h3>

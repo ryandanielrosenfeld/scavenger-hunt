@@ -5,7 +5,7 @@
 {% block progress_bar %}
     <div class="progress">
         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60"
-             aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+             aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
         </div>
     </div>
 {% endblock %}
@@ -21,7 +21,9 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
               </button>
-                <b>CORRECT</b>, Professor Bailey uses an Apple computer.
+                <h4><strong>CORRECT</strong>, the answer is a Jet Engine! The 3D printing lab is only open to undergraduate students,
+                and is a great example of the technological resources available to UVA students.<br>
+                    Click Proceed to move on to the next task.</h4>
             </div>
         </div>
     {% elif incorrect %}
@@ -34,12 +36,14 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
               </button>
-              Sorry, try again. Make sure you are looking at the office on the side of Olssen Hall!
+                Sorry, try again. Make sure you are looking in the center window on the first floor of the
+                Mechanical Engineering Building!
             </div>
         </div>
     {% endif %}
     {% if not activated %}
-        <h2>What type of computer does Professor Bailey have in his office?</h2>
+        <h3><i>Your adventure continues in the Mechanical Engineering Building.</i></h3>
+        <h2>What 3D printed object sits in the center window looking into the Rolls-Royce 3D printing lab?</h2>
         <form action="/task2/" method="POST">
             {% csrf_token %}
             <div class="form-group">
@@ -48,15 +52,12 @@
             <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Submit</button>
         </form>
     {% else %}
-        {% if not correct %}<h3><i>You correctly answered the question.</i></h3>{% endif %}
-        <hr>
-        <h3>Station Unlocked!</h3>
-        <a href="/task2/activate/" class="btn btn-success btn-lg" style="width: 100%">Write the next clue</a>
+        {% if not correct %}<h3><i>You correctly answered Jet Engine!</i></h3>{% endif %}
     {% endif %}
     <div class="row">
         <a class="btn btn-info pull-left" href="/" style="margin-left: 10px;">Return to home</a>
         {% if activated %}
-            <a id="proceed-btn" class="btn btn-primary pull-right" href="/task3/" style="margin-right: 10px;">Next task</a>
+            <a id="proceed-btn" class="btn btn-primary pull-right" href="/task3/" style="margin-right: 10px;">Proceed</a>
         {% endif %}
     </div>
 {% endblock %}

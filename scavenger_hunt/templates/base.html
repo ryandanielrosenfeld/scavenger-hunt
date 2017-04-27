@@ -5,7 +5,8 @@
 
     {% load static %}
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'material_kit/assets/img/apple-icon.png' %}">
-    <link rel="icon" type="image/png" href="{% static 'material_kit/assets/img/favicon.png' %}">
+    <link rel="shortcut icon" href="{% static 'general/favicon.ico' %}" />
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
     <title>UVA Scavenger Hunt</title>
@@ -22,6 +23,8 @@
     <link href="{% static 'material_kit/assets/css/bootstrap.min.css' %}" rel="stylesheet"/>
     <link href="{% static 'material_kit/assets/css/demo.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    {% block header %}{% endblock %}
 </head>
 
 <body class="components-page">
@@ -29,7 +32,7 @@
 <div class="wrapper">
     <div class="header header-filter"
          style="background-image: url('https://www.insidehighered.com/careers/images/institution_profile/UVA%20rotunda_treeless_cropped.jpg');">
-        <div class="container">
+        <div class="container" id="title-container">
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3 title text-center">
                     <h1>UVA Scavenger Hunt</h1>
@@ -38,7 +41,7 @@
                 </div>
             </div>
             {% if request.user.is_authenticated %}
-                    <div class="dropdown">
+                    <div class="dropdown" style="margin-top: -20px">
                         <button id="logout_button" class="btn btn-link pull-right dropdown-toggle" type="button"
                                 data-toggle="dropdown">{{ request.user.first_name }}
                             <span class="caret"></span></button>

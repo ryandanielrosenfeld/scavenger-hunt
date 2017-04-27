@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 
+{% block header %}
+    {% load static %}
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <div class="container text-center">
     <h1>Welcome to the UVA Scavenger Hunt!</h1>
     {% if request.user.is_authenticated %}
         <h2>Signed in as {{ request.user.first_name }} {{ request.user.last_name }}</h2>
-        <button class="btn btn-success"><a href="{% url 'logout' %}">Sign Out</a></button>
+{#        <button class="btn btn-danger pull-right"><a href="{% url 'logout' %}">Sign Out</a></button><br><br>#}
     {% endif %}
     {% if request.user.task_num == 0 %}
         <h3>To start your adventure, go to the Rice courtyard (between Olsson Hall and Rice Hall)</h3>

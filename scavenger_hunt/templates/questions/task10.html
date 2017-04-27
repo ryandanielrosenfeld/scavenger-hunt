@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block task_num %}TASK 3{% endblock %}
+{% block task_num %}TASK 10{% endblock %}
 
 {% block progress_bar %}
     <div class="progress">
@@ -21,7 +21,7 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
               </button>
-                <b>CORRECT</b>, the answer 7.5!
+                <b>CORRECT</b>, the answer is 7.5!
             </div>
         </div>
     {% elif incorrect %}
@@ -49,11 +49,15 @@
             <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Submit</button>
         </form>
     {% else %}
-        {% if not correct %}<h3><i>Congratulations, you completed the UVA Scavenger Hunt!</i></h3>{% endif %}
+        <h3><i>Congratulations, you completed the UVA Scavenger Hunt!</i><br><br><strong>This interactive tour was powered
+            by the TLP. Learn more about the program at the
+            <a href="http://www.seas.virginia.edu/acad/programs/tlp/">TLP Website</a>!</strong><br><br> To celebrate your
+            success, read below...</h3>
         <hr>
         <h3>Station Unlocked!</h3>
-        {% if not hide_button %}<a href="/task3/activate/" class="btn btn-success btn-lg" style="width: 100%">Celebrate UVA</a>
-        {% else %}<h4><i>Station activated! You can re-activate it again after two minutes.</i></h4>{% endif %}
+        <h4><i>Go to the back of the courtyard next to Rice by the trees.</i></h4>
+        {% if not hide_button %}<a href="/task10/activate/" class="btn btn-success btn-lg" style="width: 100%">Celebrate UVA</a>
+        {% else %}<h4 style="color: blue">Station activated! You can re-activate it again after two minutes.</h4>{% endif %}
     {% endif %}
     <div class="row">
         <a class="btn btn-info pull-left" href="/" style="margin-left: 10px;">Return to home</a>

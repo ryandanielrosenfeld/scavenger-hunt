@@ -53,8 +53,9 @@
         {% if not correct %}<h3><i>You correctly answered the question.</i></h3>{% endif %}
         <hr>
         <h3>Station Unlocked!</h3>
+        <h4><i>Look at the white board in the window</i></h4>
         {% if not hide_button %}<a href="/task4/activate/" class="btn btn-success btn-lg" style="width: 100%">Write the next clue</a>
-        {% else %}<h4><i>Station activated! You can re-activate it again after two minutes.</i></h4>{% endif %}
+        {% else %}<h4 style="color: blue">Station activated! You can re-activate it again after two minutes.</h4>{% endif %}
     {% endif %}
     <div class="row">
         <a class="btn btn-info pull-left" href="/" style="margin-left: 10px;">Return to home</a>

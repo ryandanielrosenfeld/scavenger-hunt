@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .forms import InputForm, Task2ChoiceForm
+from .forms import InputForm, Task2ChoiceForm, Task9ChoiceForm
 from django.http import HttpResponseRedirect
 from .models import Task
 from .services import activate_song
-from .selenium_board_control import activate_board
+# from .selenium_board_control import activate_board
 from threading import Timer
 
 
@@ -36,9 +36,10 @@ def task1_activate(request):
     t = Task.objects.get(number=1)
     t.activate = True
     t.save()
+
     t_activated[0] = True
-    t = Timer(120.0, delay_show_btn_0)
-    t.start()
+    timer = Timer(120.0, delay_show_btn_0)
+    timer.start()
     return HttpResponseRedirect('/task1/')
 
 
@@ -78,9 +79,9 @@ def task3(request):
         url = "/task" + str(request.user.task_num) + "/"
         return HttpResponseRedirect(url)
     if request.method == 'POST':
-        form = InputForm(request.POST)  # MAKE MULTIPLE CHOICE (hoverboard, electric guitar, rotunda)
+        form = InputForm(request.POST)
         if form.is_valid():
-            ans = request.POST['answer'].lower()
+            ans = request.POST['answer'].lower().strip()
             if ans == 'material science' or ans == 'material science building':
                 correct = True
                 activated = True
@@ -106,7 +107,8 @@ def task4(request):
     if request.method == 'POST':
         form = InputForm(request.POST)
         if form.is_valid():
-            if request.POST['answer'].lower() == 'apple':
+            ans = request.POST['answer'].lower().strip()
+            if ans == 'apple' or ans == 'mac':
                 correct = True
                 activated = True
                 request.user.task_num = 5
@@ -120,15 +122,18 @@ def task4(request):
 
 
 def task4_activate(request):
-    t = Task.objects.get(number=4)
+    print("here")
+    t = Task.objects.get(number=1)
     t.activate = True
     t.save()
-    user = request.user
-    name = user.first_name
-    activate_board(name)
+    # user = request.user
+    # name = user.first_name
+    # activate_board(name)
+
     t_activated[1] = True
-    t = Timer(120.0, delay_show_btn_1)
-    t.start()
+    timer = Timer(120.0, delay_show_btn_1)
+    timer.start()
+    print(t_activated[1])
     return HttpResponseRedirect('/task4/')
 
 
@@ -145,8 +150,7 @@ def task5(request):
     if request.method == 'POST':
         form = InputForm(request.POST)
         if form.is_valid():
-            ans = request.POST['answer'].lower()
-            print(ans)
+            ans = request.POST['answer'].lower().strip()
             if ans == 'at&t':
                 correct = True
                 activated = True
@@ -170,10 +174,10 @@ def task6(request):
         url = "/task" + str(request.user.task_num) + "/"
         return HttpResponseRedirect(url)
     if request.method == 'POST':
-        form = InputForm(request.POST)  # MAKE MULTIPLE CHOICE (hoverboard, electric guitar, rotunda)
+        form = InputForm(request.POST)
         if form.is_valid():
-            ans = request.POST['answer'].lower()
-            if ans == 'national instruments':
+            ans = request.POST['answer'].lower().strip()
+            if ans == 'national instruments' or ans == 'ni':
                 correct = True
                 activated = True
                 request.user.task_num = 7
@@ -196,9 +200,9 @@ def task7(request):
         url = "/task" + str(request.user.task_num) + "/"
         return HttpResponseRedirect(url)
     if request.method == 'POST':
-        form = InputForm(request.POST)  # MAKE MULTIPLE CHOICE (hoverboard, electric guitar, rotunda)
+        form = InputForm(request.POST)
         if form.is_valid():
-            ans = request.POST['answer'].lower()
+            ans = request.POST['answer'].lower().strip()
             if ans == 'zimbabwe':
                 correct = True
                 activated = True
@@ -225,9 +229,9 @@ def task8(request):
         url = "/task" + str(request.user.task_num) + "/"
         return HttpResponseRedirect(url)
     if request.method == 'POST':
-        form = InputForm(request.POST)  # MAKE MULTIPLE CHOICE (hoverboard, electric guitar, rotunda)
+        form = InputForm(request.POST)
         if form.is_valid():
-            ans = request.POST['answer'].lower()
+            ans = request.POST['answer'].lower().strip()
             if ans == '15':
                 correct = True
                 activated = True
@@ -241,7 +245,7 @@ def task8(request):
 
 
 def task9(request):
-    form = InputForm()
+    form = Task9ChoiceForm()
     incorrect = False
     correct = False
     activated = False
@@ -251,10 +255,10 @@ def task9(request):
         url = "/task" + str(request.user.task_num) + "/"
         return HttpResponseRedirect(url)
     if request.method == 'POST':
-        form = InputForm(request.POST)  # MAKE MULTIPLE CHOICE (hoverboard, electric guitar, rotunda)
+        form = Task9ChoiceForm(request.POST)
         if form.is_valid():
-            ans = request.POST['answer'].lower()
-            if ans == 'concrete lightning':
+            ans = request.POST['answer']
+            if ans == 'C':
                 correct = True
                 activated = True
                 request.user.task_num = 10
@@ -279,21 +283,22 @@ def task10(request):
     if request.method == 'POST':
         form = InputForm(request.POST)
         if form.is_valid():
-            if request.POST['answer'] == '7.5':
+            ans = request.POST['answer'].lower().strip()
+            if ans == '7.5':
                 correct = True
                 activated = True
                 request.user.task_num = 11
                 request.user.save()
             else:
                 incorrect = True
-            return render(request, 'task1.html', {'form': form, 'correct': correct, 'incorrect': incorrect,
+            return render(request, 'task10.html', {'form': form, 'correct': correct, 'incorrect': incorrect,
                                                   'activated': activated})
     return render(request, 'task10.html', {'form': form, 'activated': activated, 'hide_button': t_activated[2]})
 
 
 def task10_activate(request):
     activate_song()
-    t_activated[0] = True
+    t_activated[2] = True
     t = Timer(120.0, delay_show_btn_2)
     t.start()
     return HttpResponseRedirect('/task10/')

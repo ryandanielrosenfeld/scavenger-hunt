@@ -1,0 +1,11 @@
+.components-page .wrapper > .header,
+.tutorial-page .wrapper > .header{
+    height: 200px;
+    padding-top: 100px;
+    background-size: cover;
+    background-position: center center;
+}
+
+#title-container {
+    margin-top: -50px;
+}

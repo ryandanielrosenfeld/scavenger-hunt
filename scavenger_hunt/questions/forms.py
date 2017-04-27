@@ -23,3 +23,19 @@ class Task2ChoiceForm(forms.Form):
         choices=TASK2_CHOICES,
         widget=forms.Select(attrs={'class': 'form-control'})
     )
+
+
+TASK9_CHOICES = (
+    ('P', 'Plastic'),
+    ('C', 'Concrete'),
+    ('W', 'Wood'),
+    ('M', 'Metal'),
+)
+
+
+class Task9ChoiceForm(forms.Form):
+    answer = forms.ChoiceField(
+        label='',
+        choices=TASK9_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )

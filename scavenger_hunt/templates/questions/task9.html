@@ -21,7 +21,7 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
               </button>
-                <h4><strong>CORRECT</strong>, you answered Concrete Lightning!<br>
+                <h4><strong>CORRECT</strong>, you answered concrete!<br>
                     Click Proceed to move on to the next task.</h4>
             </div>
         </div>
@@ -35,13 +35,13 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
               </button>
-                Sorry, try again. Make sure you're looking at an orange and blue boat!
+                Sorry, try again. Make sure you're looking at a black and white boat!
             </div>
         </div>
     {% endif %}
     {% if not activated %}
         <h3><i>Walk down Engineer's Way towards Scott Stadium.</i></h3>
-        <h2>What is the name of the concrete boat on your left?</h2>
+        <h2>What material is the boat on your left made out of?</h2>
         <form action="/task9/" method="POST">
             {% csrf_token %}
             <div class="form-group">
@@ -50,7 +50,7 @@
             <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Submit</button>
         </form>
     {% else %}
-        {% if not correct %}<h3><i>You correctly answered Concrete Lightning!</i></h3>{% endif %}
+        {% if not correct %}<h3><i>You correctly answered concrete!</i></h3>{% endif %}
     {% endif %}
     <div class="row">
         <a class="btn btn-info pull-left" href="/" style="margin-left: 10px;">Return to home</a>

@@ -75,5 +75,17 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $('#registerButton').click(function() {
+            $('#registerButton').addClass('active');
+            $('#resumeButton').removeClass('active');
+        })
+
+        $('#resumeButton').click(function() {
+            $('#resumeButton').addClass('active');
+            $('#registerButton').removeClass('active');
+        })
+    </script>
 </body>
 </html>

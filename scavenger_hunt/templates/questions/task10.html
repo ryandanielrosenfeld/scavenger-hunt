@@ -52,7 +52,8 @@
         {% if not correct %}<h3><i>Congratulations, you completed the UVA Scavenger Hunt!</i></h3>{% endif %}
         <hr>
         <h3>Station Unlocked!</h3>
-        <a href="/task3/activate/" class="btn btn-success btn-lg" style="width: 100%">Celebrate UVA</a>
+        {% if not hide_button %}<a href="/task3/activate/" class="btn btn-success btn-lg" style="width: 100%">Celebrate UVA</a>
+        {% else %}<h4><i>Station activated! You can re-activate it again after two minutes.</i></h4>{% endif %}
     {% endif %}
     <div class="row">
         <a class="btn btn-info pull-left" href="/" style="margin-left: 10px;">Return to home</a>

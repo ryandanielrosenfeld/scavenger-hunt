@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from .forms import *
+from .forms import InputForm, Task2ChoiceForm
 from django.http import HttpResponseRedirect
 from .models import Task
 from .services import activate_song
 from .selenium_board_control import activate_board
+from threading import Timer
 
 
 def task1(request):
@@ -19,7 +20,7 @@ def task1(request):
     if request.method == 'POST':
         form = InputForm(request.POST)
         if form.is_valid():
-            if request.POST['answer'] == 'Lewin':
+            if request.POST['answer'].lower().strip() == 'lewin':
                 correct = True
                 activated = True
                 request.user.task_num = 2
@@ -28,18 +29,21 @@ def task1(request):
                 incorrect = True
             return render(request, 'task1.html', {'form': form, 'correct': correct, 'incorrect': incorrect,
                                                   'activated': activated})
-    return render(request, 'task1.html', {'form': form, 'activated': activated})
+    return render(request, 'task1.html', {'form': form, 'activated': activated, 'hide_button': t_activated[0]})
 
 
 def task1_activate(request):
     t = Task.objects.get(number=1)
     t.activate = True
     t.save()
+    t_activated[0] = True
+    t = Timer(120.0, delay_show_btn_0)
+    t.start()
     return HttpResponseRedirect('/task1/')
 
 
 def task2(request):
-    form = InputForm()
+    form = Task2ChoiceForm()
     incorrect = False
     correct = False
     activated = False
@@ -49,9 +53,9 @@ def task2(request):
         url = "/task" + str(request.user.task_num) + "/"
         return HttpResponseRedirect(url)
     if request.method == 'POST':
-        form = InputForm(request.POST)  # MAKE MULTIPLE CHOICE (hoverboard, electric guitar, rotunda)
+        form = Task2ChoiceForm(request.POST)
         if form.is_valid():
-            if request.POST['answer'] == 'A Jet Engine':
+            if request.POST['answer'] == 'JE':
                 correct = True
                 activated = True
                 request.user.task_num = 3
@@ -111,7 +115,8 @@ def task4(request):
                 incorrect = True
             return render(request, 'task4.html', {'form': form, 'correct': correct, 'incorrect': incorrect,
                                                   'activated': activated})
-    return render(request, 'task4.html', {'form': form, 'activated': activated})
+    print(t_activated[1])
+    return render(request, 'task4.html', {'form': form, 'activated': activated, 'hide_button': t_activated[1]})
 
 
 def task4_activate(request):
@@ -121,6 +126,9 @@ def task4_activate(request):
     user = request.user
     name = user.first_name
     activate_board(name)
+    t_activated[1] = True
+    t = Timer(120.0, delay_show_btn_1)
+    t.start()
     return HttpResponseRedirect('/task4/')
 
 
@@ -280,9 +288,27 @@ def task10(request):
                 incorrect = True
             return render(request, 'task1.html', {'form': form, 'correct': correct, 'incorrect': incorrect,
                                                   'activated': activated})
-    return render(request, 'task10.html', {'form': form, 'activated': activated})
+    return render(request, 'task10.html', {'form': form, 'activated': activated, 'hide_button': t_activated[2]})
 
 
 def task10_activate(request):
     activate_song()
+    t_activated[0] = True
+    t = Timer(120.0, delay_show_btn_2)
+    t.start()
     return HttpResponseRedirect('/task10/')
+
+
+t_activated = [False, False, False]
+
+
+def delay_show_btn_0():
+    t_activated[0] = False
+
+
+def delay_show_btn_1():
+    t_activated[1] = False
+
+
+def delay_show_btn_2():
+    t_activated[2] = False

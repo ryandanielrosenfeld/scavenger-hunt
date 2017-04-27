@@ -34,20 +34,20 @@
                         <td><a class="btn btn-primary" href="/task1/"><i class="material-icons">launch</i></a></td>
                     </a></tr>
                 {% endif %}
-                {% if request.user.task_num > 2 %}
-                    <tr><a href="/task2/">
-                        <td>2</td>
+                {% if request.user.task_num > 4 %}
+                    <tr><a href="/task4/">
+                        <td>4</td>
                         <td>Activate the whiteboard</td>
                         <td>Professor Bailey's Office Window</td>
-                        <td><a class="btn btn-primary" href="/task2/"><i class="material-icons">launch</i></a></td>
+                        <td><a class="btn btn-primary" href="/task4/"><i class="material-icons">launch</i></a></td>
                     </a></tr>
                 {% endif %}
-                {% if request.user.task_num > 3 %}
-                    <tr><a href="/task3/">
+                {% if request.user.task_num > 10 %}
+                    <tr><a href="/task10/">
                         <td>3</td>
-                        <td>Watch your name magically appear</td>
-                        <td>Side of Olsson Hall</td>
-                        <td><a class="btn btn-primary" href="/task3/"><i class="material-icons">launch</i></a></td>
+                        <td>Celebrate UVA</td>
+                        <td>Rice Courtyard</td>
+                        <td><a class="btn btn-primary" href="/task10/"><i class="material-icons">launch</i></a></td>
                     </a></tr>
                 {% endif %}
             </tbody>

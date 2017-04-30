@@ -34,12 +34,12 @@ def task1(request):
 
 def task1_activate(request):
     t = Task.objects.get(number=1)
-    t.activate = True
+    t.activated = True
     t.save()
 
-    t_activated[0] = True
-    timer = Timer(120.0, delay_show_btn_0)
-    timer.start()
+    # t_activated[0] = True
+    # timer = Timer(120.0, delay_show_btn_0)
+    # timer.start()
     return HttpResponseRedirect('/task1/')
 
 
@@ -123,17 +123,17 @@ def task4(request):
 
 def task4_activate(request):
     print("here")
-    t = Task.objects.get(number=1)
-    t.activate = True
+    t = Task.objects.get(number=2)
+    t.activated = True
     t.save()
     # user = request.user
     # name = user.first_name
     # activate_board(name)
 
-    t_activated[1] = True
-    timer = Timer(120.0, delay_show_btn_1)
-    timer.start()
-    print(t_activated[1])
+    # t_activated[1] = True
+    # timer = Timer(120.0, delay_show_btn_1)
+    # timer.start()
+    # print(t_activated[1])
     return HttpResponseRedirect('/task4/')
 
 

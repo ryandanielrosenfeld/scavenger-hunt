@@ -4,14 +4,14 @@ from questions.models import Task
 
 
 def api_call(request):
-    response = json.dumps({'None': True})
+    response = 'n'
     if request.method == 'GET':
         tn = request.GET.get('task_num', None)
         task = Task.objects.get(number=tn)
-        if task.activate:
-            response = 1
-            task.activate = False
+        print(task.number, task.activated)
+        if task.activated:
+            response = 'y'
+            task.activated = False
             task.save()
-        else:
-            response = 0
+            print(task.number, task.activated, '|||||||')
     return render(request, 'response.html', {'response': response})

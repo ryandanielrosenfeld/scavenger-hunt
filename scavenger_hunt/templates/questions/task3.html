@@ -21,7 +21,8 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
               </button>
-                <b>CORRECT</b>, Trigon was founded in 1924! Click Proceed to move on to the next task.
+                <h4><strong>CORRECT</strong>, you answered the Material Science Building!<br>
+                    Click Proceed to move on to the next task.</h4>
             </div>
         </div>
     {% elif incorrect %}
@@ -34,12 +35,13 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
               </button>
-              Sorry, try again. Make sure you are looking at the ground in front of Thornton Hall!
+                Sorry, try again. Make sure you're facing North!
             </div>
         </div>
     {% endif %}
     {% if not activated %}
-        <h2>What year was Trigon was founded?</h2>
+        <h3><i>Exit the doors closest to you. You will find yourself on the Mechanical Engineering Patio</i></h3>
+        <h2>What building is right in front of you?</h2>
         <form action="/task3/" method="POST">
             {% csrf_token %}
             <div class="form-group">
@@ -48,15 +50,12 @@
             <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Submit</button>
         </form>
     {% else %}
-        {% if not correct %}<h3><i>You correctly answered that Trigon was founded in 1924</i></h3>{% endif %}
-        <hr>
-        <h3>Station Unlocked!</h3>
-        <a href="/task3/activate/" class="btn btn-success btn-lg" style="width: 100%">Celebrate UVA</a>
+        {% if not correct %}<h3><i>You correctly answered Material Science Building!</i></h3>{% endif %}
     {% endif %}
     <div class="row">
         <a class="btn btn-info pull-left" href="/" style="margin-left: 10px;">Return to home</a>
         {% if activated %}
-            <a id="proceed-btn" class="btn btn-primary pull-right" href="/task4/" style="margin-right: 10px;">Next task</a>
+            <a id="proceed-btn" class="btn btn-primary pull-right" href="/task4/" style="margin-right: 10px;">Proceed</a>
         {% endif %}
     </div>
 {% endblock %}

@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 
+{% block header %}
+    {% load static %}
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <div class="container text-center">
     <h1>Welcome to the UVA Scavenger Hunt!</h1>
     {% if request.user.is_authenticated %}
         <h2>Signed in as {{ request.user.first_name }} {{ request.user.last_name }}</h2>
-        <button class="btn btn-success"><a href="{% url 'logout' %}">Sign Out</a></button>
+{#        <button class="btn btn-danger pull-right"><a href="{% url 'logout' %}">Sign Out</a></button><br><br>#}
     {% endif %}
     {% if request.user.task_num == 0 %}
-        <h3>To start your adventure, go to the steps of Thornton Hall</h3>
+        <h3>To start your adventure, go to the Rice courtyard (between Olsson Hall and Rice Hall)</h3>
         <button class="btn btn-success"><a href="/task1/">Proceed</a></button>
     {% else %}
         <h3>Current task number: {{ request.user.task_num }}</h3>
@@ -34,20 +39,20 @@
                         <td><a class="btn btn-primary" href="/task1/"><i class="material-icons">launch</i></a></td>
                     </a></tr>
                 {% endif %}
-                {% if request.user.task_num > 2 %}
-                    <tr><a href="/task2/">
-                        <td>2</td>
+                {% if request.user.task_num > 4 %}
+                    <tr><a href="/task4/">
+                        <td>4</td>
                         <td>Activate the whiteboard</td>
                         <td>Professor Bailey's Office Window</td>
-                        <td><a class="btn btn-primary" href="/task2/"><i class="material-icons">launch</i></a></td>
+                        <td><a class="btn btn-primary" href="/task4/"><i class="material-icons">launch</i></a></td>
                     </a></tr>
                 {% endif %}
-                {% if request.user.task_num > 3 %}
-                    <tr><a href="/task3/">
+                {% if request.user.task_num > 10 %}
+                    <tr><a href="/task10/">
                         <td>3</td>
-                        <td>Watch your name magically appear</td>
-                        <td>Side of Olsson Hall</td>
-                        <td><a class="btn btn-primary" href="/task3/"><i class="material-icons">launch</i></a></td>
+                        <td>Celebrate UVA</td>
+                        <td>Rice Courtyard</td>
+                        <td><a class="btn btn-primary" href="/task10/"><i class="material-icons">launch</i></a></td>
                     </a></tr>
                 {% endif %}
             </tbody>

@@ -33,9 +33,9 @@ def task1(request):
 
 
 def task1_activate(request):
-    t = Task.objects.get(number=1)
-    t.activated = True
-    t.save()
+    request.user.activate1 = True
+    request.user.save()
+    print("Activating T1")
 
     # t_activated[0] = True
     # timer = Timer(120.0, delay_show_btn_0)

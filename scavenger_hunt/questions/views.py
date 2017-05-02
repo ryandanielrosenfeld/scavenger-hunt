@@ -3,7 +3,7 @@ from .forms import InputForm, Task2ChoiceForm, Task9ChoiceForm
 from django.http import HttpResponseRedirect
 from .models import Task
 from .services import activate_song
-# from .selenium_board_control import activate_board
+from .selenium_board_control import activate_board
 from threading import Timer
 
 
@@ -33,13 +33,14 @@ def task1(request):
 
 
 def task1_activate(request):
-    request.user.activate1 = True
-    request.user.save()
-    print("Activating T1")
+    if request.user.task_num > 1:
+        request.user.activate1 = True
+        request.user.save()
+        print("Activating T1")
 
-    # t_activated[0] = True
-    # timer = Timer(120.0, delay_show_btn_0)
-    # timer.start()
+        t_activated[0] = True
+        timer = Timer(30.0, delay_show_btn_0)
+        timer.start()
     return HttpResponseRedirect('/task1/')
 
 
@@ -122,18 +123,18 @@ def task4(request):
 
 
 def task4_activate(request):
-    print("here")
-    t = Task.objects.get(number=2)
-    t.activated = True
-    t.save()
-    # user = request.user
-    # name = user.first_name
-    # activate_board(name)
+    if request.user.task_num > 4:
+        t = Task.objects.get(number=2)
+        t.activated = True
+        t.save()
+        user = request.user
+        name = user.first_name
+        activate_board(name)
 
-    # t_activated[1] = True
-    # timer = Timer(120.0, delay_show_btn_1)
-    # timer.start()
-    # print(t_activated[1])
+        t_activated[1] = True
+        timer = Timer(30.0, delay_show_btn_1)
+        timer.start()
+        print(t_activated[1])
     return HttpResponseRedirect('/task4/')
 
 
@@ -297,10 +298,12 @@ def task10(request):
 
 
 def task10_activate(request):
-    activate_song()
-    t_activated[2] = True
-    t = Timer(120.0, delay_show_btn_2)
-    t.start()
+    if request.user.task_num > 10:
+        activate_song()
+
+        t_activated[2] = True
+        t = Timer(120.0, delay_show_btn_2)
+        t.start()
     return HttpResponseRedirect('/task10/')
 
 

@@ -36,6 +36,11 @@ def index(request):
         return render(request, 'index.html')
     return HttpResponseRedirect('/register/')
 
+
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+def test_view(request):
+    return render(request, 'api_test.html')

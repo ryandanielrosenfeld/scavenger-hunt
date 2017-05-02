@@ -13,11 +13,4 @@ def api_call(request):
                 for user in activated_users:
                     user.activate1 = False
                     user.save()
-        elif tn == '2':
-            activated_users = SiteUser.objects.filter(activate2=True)
-            if len(activated_users) > 0:
-                response = 'y'
-                for user in activated_users:
-                    user.activate2 = False
-                    user.save()
     return render(request, 'response.html', {'response': response})

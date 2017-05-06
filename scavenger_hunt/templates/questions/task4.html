@@ -40,7 +40,7 @@
     {% endif %}
     {% if not activated %}
         <h3><i>Cross Engineer's Way. Walk between Thornton and Olsson Hall, coming to the side of Olsson.
-            Look 3 windows to the right of the arch.</i></h3>
+            Look 3 windows to the right of the Entrance.</i></h3>
         <h2>What type of computer does Professor Bailey have in his office?</h2>
         <form action="/task4/" method="POST">
             {% csrf_token %}
@@ -53,9 +53,9 @@
         {% if not correct %}<h3><i>You correctly answered the question.</i></h3>{% endif %}
         <hr>
         <h3>Station Unlocked!</h3>
-        <h4><i>Look at the white board in the window</i></h4>
+        <h4><i>Approach the window and press the button to reveal your next clue.</i></h4>
         {% if not hide_button %}<a href="/task4/activate/" class="btn btn-success btn-lg" style="width: 100%">Write the next clue</a>
-        {% else %}<h4 style="color: blue">Station activated! You can re-activate it again after two minutes.</h4>{% endif %}
+        {% else %}<h4 style="color: blue">Station has been activated!  You can re-activate it again after 30 seconds.</h4>{% endif %}
     {% endif %}
     <div class="row">
         <a class="btn btn-info pull-left" href="/" style="margin-left: 10px;">Return to home</a>

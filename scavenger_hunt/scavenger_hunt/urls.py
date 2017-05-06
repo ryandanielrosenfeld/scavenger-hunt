@@ -24,4 +24,7 @@ urlpatterns = [
     url(r'^api/', api_views.api_call),
     url(r'^logout/', general_views.logout_view, name='logout'),
     url(r'^test/', general_views.test_view),
+    url(r'^presentation/activate-tj/', question_views.pres_activate_tj),
+    url(r'^presentation/activate-board/', question_views.pres_activate_board),
+    url(r'^presentation/activate-lights/', question_views.pres_activate_lights),
 ]

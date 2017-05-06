@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="container text-center">
-    <h1>Welcome to the UVA Scavenger Hunt!</h1>
+    <h1>Welcome to the UVA Cyber-Physical Tour!</h1>
     {% if request.user.is_authenticated %}
         <h2>Signed in as {{ request.user.first_name }} {{ request.user.last_name }}</h2>
 {#        <button class="btn btn-danger pull-right"><a href="{% url 'logout' %}">Sign Out</a></button><br><br>#}
@@ -35,7 +35,7 @@
                     <tr><a href="/task1/">
                         <td>1</td>
                         <td>Make TJ talk</td>
-                        <td>Steps of Thornton Hall</td>
+                        <td>Rice Hall Windows</td>
                         <td><a class="btn btn-primary" href="/task1/"><i class="material-icons">launch</i></a></td>
                     </a></tr>
                 {% endif %}
@@ -49,9 +49,9 @@
                 {% endif %}
                 {% if request.user.task_num > 10 %}
                     <tr><a href="/task10/">
-                        <td>3</td>
+                        <td>10</td>
                         <td>Celebrate UVA</td>
-                        <td>Rice Courtyard</td>
+                        <td>Rice Hall Windows</td>
                         <td><a class="btn btn-primary" href="/task10/"><i class="material-icons">launch</i></a></td>
                     </a></tr>
                 {% endif %}

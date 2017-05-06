@@ -83,7 +83,7 @@ def task3(request):
         form = InputForm(request.POST)
         if form.is_valid():
             ans = request.POST['answer'].lower().strip()
-            if ans == 'material science' or ans == 'material science building':
+            if ans == 'materials science' or ans == 'materials science building':
                 correct = True
                 activated = True
                 request.user.task_num = 4
@@ -305,6 +305,23 @@ def task10_activate(request):
         t = Timer(120.0, delay_show_btn_2)
         t.start()
     return HttpResponseRedirect('/task10/')
+
+
+def pres_activate_tj(request):
+    user = SiteUser.objects.all()[0]
+    user.activate1 = True
+    user.save()
+    return render(request, 'activated.html')
+
+
+def pres_activate_board(request):
+    activate_board("Bailey-Lewin")
+    return render(request, 'activated.html')
+
+
+def pres_activate_lights(request):
+    activate_song()
+    return render(request, 'activated.html')
 
 
 t_activated = [False, False, False]
